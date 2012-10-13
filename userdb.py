@@ -9,7 +9,7 @@ from google.appengine.api import users
 from questiondb import questionm
 def generateSet():
 	a = []
-	for i in range(45):
+	for i in range(1):
 		a.append(i+1)
 	random.shuffle(a)
 	return a

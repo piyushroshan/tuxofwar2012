@@ -78,7 +78,7 @@ var xkcdDisplay = TerminalShell.commands['q'] = TerminalShell.commands['question
 	xkcd.get(path, function(data) {
 		// Stuff to be dome with question data
 		terminal.setWorking(true);
-		terminal.print($('<h3>').text('Question '));
+		terminal.print($('<h3>').text('Question ' + data.num));
 		terminal.print($('<p class=question>' + data.question + '</p>'));
 		if(data.image)
 			terminal.print($('<img>').addClass('comic').attr('src', data.image));
@@ -199,7 +199,7 @@ TerminalShell.filters.push(function (terminal, cmd) {
 
 TerminalShell.commands['shutdown'] = TerminalShell.commands['poweroff'] = function(terminal) {
 	if (this.sudo) {
-		terminal.print('Broadcast message from guest@tathva2011');
+		terminal.print('Broadcast message from guest@tathva2012');
 		terminal.print();
 		terminal.print('The system is going down for maintenance NOW!');
 		return $('#screen').fadeOut();
@@ -252,7 +252,7 @@ var Filesystem = {
 	'datetime.txt': {type: 'file', read: function (terminal) {
 		'use strict';
 		$.each([
-			$('<h3>').text('Date and Time : Monday October 11, 2011 10pm to 11pm.')
+			$('<h3>').text('Date and Time : Monday October 14, 2012 10pm to 11pm.')
 		], function (num, line) {
 			terminal.print(line);
 		});
@@ -316,8 +316,8 @@ var Filesystem = {
 		'use strict';
 		$.each([
 			$('<h3>').text('Registration Info'),
-			$('<p>').html('Both members of the team have to <a href="http://tathva.org/2011/#!register" target="_blank">register on the Tathva Site</a> to receive individual Tathva IDs. The team captain should use a Google account for registration, this will be required for logging into the contest portal.'),
-			$('<p>').html('Then, the team captain has to register for Tux of War using <a href="http://tathva.org/2011/index.php#!eventregister" target="_blank">Event Registration page</a> at Tathva site specifying the partners tathva ID to obtain a team ID.'),
+			$('<p>').html('Both members of the team have to <a href="http://tathva.org/2012/#login" target="_blank">register on the Tathva Site</a> to receive individual Tathva IDs. The team captain should use a Google account for registration, this will be required for logging into the contest portal.'),
+			$('<p>').html('Then, the team captain has to register for Tux of War using <a href="http://tathva.org/2012/events.php#!tux_of_war_" target="_blank">Event Registration page</a> at Tathva site specifying the partners tathva ID to obtain a team ID.'),
 			'Only teams with a valid Team ID are allowed to participate in the contest.',
 			'When the first round is started the team captain should use his/her Google account to participate. The other team mate can help him/her, but need not attempt the first round individually.'
 		], function (num, line) {
@@ -358,12 +358,15 @@ var Filesystem = {
 		'use strict';
 		$.each([
 			$('<h3>').text('Contact Info'),
-			'Kartik Singhal',
-			' Phone: +91 974 688 7377',
-			' E-mail: kartik@tathva.org',
-			'Abhishek Gupta',
-			' Phone: +91 963 325 0636',
-			' Email: abhishek@tathva.org'
+			'Roshan Piyush',
+			' Phone: +91 944 788 4634',
+			' E-mail: piyushroshan@gmail.com',
+			'Sudev A C',
+			' Phone: +91 808 944 2513',
+			' Email: sudevdev@gmail.com',
+			'Aayush Jaiswal',
+			' Phone: +91 808 944 2513',
+			' Email: sudevdev@gmail.com'
 		], function (num, line) {
 			terminal.print(line);
 		});
@@ -376,17 +379,12 @@ var Filesystem = {
 			$("Web : <a href='http://github.com/jaseemabid'> http://github.com/jaseemabid</a>"),
 			'Vipin Nair',
 			$("Web : <a href='http://github.com/swvist'> http://github.com/swvist</a>"),
-			'Kartik Singhal',
-			' Phone: +91 974 688 7377',
-			' E-mail: kartik@tathva.org',
-			'Abhishek Gupta',
-			' Phone: +91 963 325 0636',
-			' Email: abhishek@tathva.org',
-			'Jerrin Shajee George',
-			' Phone: +91 9567 428 090',
-			'Probal Mukherjee',
-			' Phone: +91 9020 703 783',
-			' Email: probal@tathva.org'
+			'Roshan Piyush',
+			' Phone: +91 944 788 4634',
+			$("Web : <a href='http://github.com/piyushroshan'> http://github.com/piyushroshan</a>"),
+			'Sudev A C',
+			' Phone: +91 808 944 2513',
+			' Email: sudevdev@gmail.com'
 		], function (num, line) {
 			terminal.print(line);
 		});
@@ -565,7 +563,7 @@ TerminalShell.commands['locate'] = function(terminal, what) {
 
 Adventure = {
 	rooms: {
-		0:{description:'You are at a computer using tathva2011.', exits:{west:1, south:10}},
+		0:{description:'You are at a computer using tathva2012.', exits:{west:1, south:10}},
 		1:{description:'Life is peaceful there.', exits:{east:0, west:2}},
 		2:{description:'In the open air.', exits:{east:1, west:3}},
 		3:{description:'Where the skies are blue.', exits:{east:2, west:4}},
@@ -746,7 +744,7 @@ TerminalShell.fallback = function(terminal, cmd) {
 		} else if  (cmd == "hint") {
 			terminal.print(randomChoice([
  				'We offer some really nice polos.',
- 				$('<p>').html('This terminal will remain available at <a href="http://tuxofwar2011.appspot.com">tuxofwar2011.appspot.com</a>'),
+ 				$('<p>').html('This terminal will remain available at <a href="http://tuxofwar2012.appspot.com">tuxofwar2012.appspot.com</a>'),
  				'Use the source, Luke!',
  				'There are cheat codes.'
  			]));
