@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Question List</title>
+	</head>
+	<body>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><th>Question List</th></tr>
+			{% for q in questions %}
+					<tr><td><b>Question Number : </b></td><td><b>{{q.questionNumber}}</b></td></tr>
+					<tr><td>Question : </td><td>{{q.question}}</td></tr>
+					<tr><td>Question Image : </td><td>{{q.qimage}}</td></tr>
+					<tr><td>Option 1 : </td><td>{{q.opt1}}</td></tr>
+					<tr><td>Option 2 : </td><td>{{q.opt2}}</td></tr>
+					<tr><td>Option 3 : </td><td>{{q.opt3}}</td></tr>
+					<tr><td>Option 4 : </td><td>{{q.opt4}}</td></tr>
+					<tr><td>Answer : </td><td>{{q.ans}}</td></tr>
+			{% endfor %}
+		</table>
+	</body>
+</html>

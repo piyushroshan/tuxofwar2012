@@ -1,0 +1,24 @@
+application: tuxofwar2012
+version: 10
+runtime: python
+api_version: 1
+
+handlers:
+- url: /favicon\.ico
+  static_files: images/favicon.ico
+  upload: images/favicon\.ico
+
+- url: /css
+  static_dir: css
+
+- url: /images
+  static_dir: images
+
+- url: /js
+  static_dir: js
+
+- url: /.*
+  script: index.py
+
+
+
