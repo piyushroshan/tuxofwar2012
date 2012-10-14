@@ -30,7 +30,7 @@ def getQuestion(num,var):
 				"}")
 	else:
 		return ("{"+
-			"\"num\" : " + "\""+"1"+"\""+","+
+			"\"num\" : " + "\""+"\""+","+
 			"\"question\" : "+"\""+"Sorry question not found. We'll fix it Soon"+"\""+","+
 			"\"image\" : "+"\""+"\""+","+ 
 			"\"options\" : " + "["+

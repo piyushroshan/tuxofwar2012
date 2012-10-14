@@ -77,15 +77,24 @@ var xkcdDisplay = TerminalShell.commands['q'] = TerminalShell.commands['question
 	terminal.setWorking(true);
 	xkcd.get(path, function(data) {
 		// Stuff to be dome with question data
+
 		terminal.setWorking(true);
-		terminal.print($('<h3>').text('Question ' + data.num));
-		terminal.print($('<p class=question>' + data.question + '</p>'));
-		if(data.image)
-			terminal.print($('<img>').addClass('comic').attr('src', data.image));
-		terminal.print($('<ol class="answers"><li>'+ data.options[0] +'</li><li>' +data.options[1] + '</li><li>'+ data.options[2]+'</li><li>'+data.options[3]+'</li></ol>'));
+		if (data.num===null || data.num==="null" || data.num==="")
+		{
+			terminal.print($('Question not found. Try again!!!'));
+		}
+		else
+		{
+			terminal.print($('<h3>').text('Question ' + data.num));
+			terminal.print($('<p class=question>' + data.question + '</p>'));
+			if(data.image)
+				terminal.print($('<img>').addClass('comic').attr('src', data.image));
+			terminal.print($('<ol class="answers"><li>'+ data.options[0] +'</li><li>' +data.options[1] + '</li><li>'+ data.options[2]+'</li><li>'+data.options[3]+'</li></ol>'));
+		}
+		
 		setTimeout(function(){
 			terminal.setWorking(false);
-		},1000);
+		},500);
 	}, fail);
 	//console.log("last now : " + xkcd.last.num);
 }
@@ -154,12 +163,12 @@ TerminalShell.commands['start'] = function(terminal) {
 TerminalShell.commands['start'] = function(terminal, tatID) {
 	if(!getUrlVars()['auth']) {
 		if (tatID === '' | typeof(tatID) === 'undefined' ) {
-			terminal.print($('<p>').addClass('error').text('Please enter a valid tathva team ID of the form TOW1234'));
+			terminal.print($('<p>').addClass('error').text('Please enter a valid tathva team ID of the form TOW123'));
 		} else {
-			if (/tow\d{4}/i.test(tatID))
+			if (/tow\d{3}/i.test(tatID))
 				window.location = xkcd.baseR + tatID.toString()
 			else
-				terminal.print($('<p>').addClass('error').text('Please enter a valid tathva team ID of the form TOW1234'));
+				terminal.print($('<p>').addClass('error').text('Please enter a valid tathva team ID of the form TOW123'));
 		}	
 	} else {
 			terminal.print($('<p>').addClass('error').text('You have already started. You dont have to do it again'));
@@ -241,9 +250,9 @@ var Filesystem = {
 			$('<h3>').text('Welcome to Tux of War contest console'),
 			'Use "ls", "cat", and "cd" to navigate the filesystem.Press "Ctrl" then "L" to clear.',
 			'cat reginfo.txt for registration information.',
-			'The contest opens at 10pm tonight. You may login upto 10:30 pm to finish the contest in time.',
+			'The contest opens at 9pm tonight. You may login upto 9:30 pm to finish the contest in time.',
 			'cat instruction.txt before participating',
-			'use start <tathva TuxOfWar team id> to start the contest. e.g. start TOW1234',
+			'use start <tathva TuxOfWar team id> to start the contest. e.g. start TOW123',
 			$('<h3>').text('The contest will start soon, you will be notified here. Please be patient.')
 		], function (num, line) {
 			terminal.print(line);
@@ -252,7 +261,7 @@ var Filesystem = {
 	'datetime.txt': {type: 'file', read: function (terminal) {
 		'use strict';
 		$.each([
-			$('<h3>').text('Date and Time : Monday October 14, 2012 10pm to 11pm.')
+			$('<h3>').text('Date and Time : Monday October 15, 2012 9:00pm to 10:00pm.')
 		], function (num, line) {
 			terminal.print(line);
 		});
@@ -276,8 +285,8 @@ var Filesystem = {
 			'Any number of teams are allowed from a college. However the members of a team must be from the same college.',
 			'There will be a maximum of three rounds.',
 			'The first round will be an online qualifying round from which a maximum of 10 teams will be shortlisted.',
-			'The final 2 rounds will be conducted at NITC campus during Tathva. Consisting of a debugging/sysadmin round (including, but not limited to, common linux hassles/problems, system environment editing, etc.) and a bash scripting round, these will test the participant\'s practical skills in a Linux environment.',
-			'Marks from first round will not be carried over to the other two rounds.',
+			'The final rounds will be conducted at NITC campus during Tathva. Consisting of a debugging/sysadmin round (including, but not limited to, common linux hassles/problems, system environment editing, etc.) and a bash scripting round, these will test the participant\'s practical skills in a Linux environment.',
+			'If there is a 3rd round. Marks from first round will not be carried over to the other two rounds.',
 			'However marks from Round 2 will be carried over to Round 3 i.e. winning teams will be decided on the basis of performance in the last two rounds.',
 			'The co-ordinator\'s decision shall be final.'
 		], function (num, line) {
@@ -337,11 +346,11 @@ var Filesystem = {
 			'Do not reload or logout once you start the competition',
 			'Use the following command to use the contest console:',
 			'start <tathva team id>',
-			'e.g. start TOW1001',
+			'e.g. start TOW100',
 			$('<br />'),
 			'Once the contest starts to view any question type the command:',
 			'display <ques_no> OR question <ques_no> ',
-			'e.g. for question no. 5 type command question 5',
+			'e.g. for question no. 5 type command question 5',T
 			'question number must be between 1 and 45',
 			$('<br />'),
 			'To answer any question type :',
