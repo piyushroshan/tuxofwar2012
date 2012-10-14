@@ -350,7 +350,7 @@ var Filesystem = {
 			$('<br />'),
 			'Once the contest starts to view any question type the command:',
 			'display <ques_no> OR question <ques_no> ',
-			'e.g. for question no. 5 type command question 5',T
+			'e.g. for question no. 5 type command question 5',
 			'question number must be between 1 and 45',
 			$('<br />'),
 			'To answer any question type :',
