@@ -165,7 +165,7 @@ TerminalShell.commands['start'] = function(terminal, tatID) {
 		if (tatID === '' | typeof(tatID) === 'undefined' ) {
 			terminal.print($('<p>').addClass('error').text('Please enter a valid tathva team ID of the form TOW123'));
 		} else {
-			if (/tow\d{3}/i.test(tatID))
+			if (/^tow\d{3}$/.test(tatID))
 				window.location = xkcd.baseR + tatID.toString()
 			else
 				terminal.print($('<p>').addClass('error').text('Please enter a valid tathva team ID of the form TOW123'));
