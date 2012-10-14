@@ -28,8 +28,7 @@ class contestStart(webapp.RequestHandler):
 				if userdb.boolRemainingTime()==True:
 					self.redirect('/?auth=1')
 				else:
-					self.response.headers['Content-Type'] = 'text/html'
-					self.response.out.write('You have finished the contest. You cannot participate again <a href="/"">Back to Tux of War</a>')
+					self.redirect('/?end=1')
 
 
 class contestStop(webapp.RequestHandler):

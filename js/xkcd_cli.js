@@ -248,9 +248,10 @@ var Filesystem = {
 		'use strict';
 		$.each([
 			$('<h3>').text('Welcome to Tux of War contest console'),
+			'Please clear browser cache before starting the event',
 			'Use "ls", "cat", and "cd" to navigate the filesystem.Press "Ctrl" then "L" to clear.',
 			'cat reginfo.txt for registration information.',
-			'The contest opens at 9pm tonight. You may login upto 9:30 pm to finish the contest in time.',
+			'The contest opens at 9pm on Monday October 15,2012. You may login upto 9:30 pm to finish the contest in time.',
 			'cat instruction.txt before participating',
 			'use start <tathva TuxOfWar team id> to start the contest. e.g. start TOW123',
 			$('<h3>').text('The contest will start soon, you will be notified here. Please be patient.')
@@ -285,9 +286,9 @@ var Filesystem = {
 			'Any number of teams are allowed from a college. However the members of a team must be from the same college.',
 			'There will be a maximum of three rounds.',
 			'The first round will be an online qualifying round from which a maximum of 10 teams will be shortlisted.',
-			'The final rounds will be conducted at NITC campus during Tathva. Consisting of a debugging/sysadmin round (including, but not limited to, common linux hassles/problems, system environment editing, etc.) and a bash scripting round, these will test the participant\'s practical skills in a Linux environment.',
-			'If there is a 3rd round. Marks from first round will not be carried over to the other two rounds.',
-			'However marks from Round 2 will be carried over to Round 3 i.e. winning teams will be decided on the basis of performance in the last two rounds.',
+			'The final rounds will be conducted at NITC campus during Tathva. Consisting of a debugging/sysadmin (including, but not limited to, common linux hassles/problems, system environment editing, etc.) and a bash scripting round, these will test the participant\'s practical skills in a Linux environment.',
+			'Marks from first round will not be carried over to the other rounds.',
+			'If there is a third round, marks from Round 2 will be carried over to Round 3 i.e. winning teams will be decided on the basis of performance in the last two rounds.',
 			'The co-ordinator\'s decision shall be final.'
 		], function (num, line) {
 			terminal.print(line);
@@ -302,21 +303,16 @@ var Filesystem = {
 			'Questions will consist of MCQs and one-liners based on UNIX/Linux commands, tools, concepts and philosophy.',
 			'Duration will be 30 minutes.',
 			'This will be an elimination round and only the qualifying teams will appear for next 2 rounds.',
-			$('<h4>').text('Round 2 - Sysadmin Round'),
+			$('<h4>').text('Round 2 and Round 3- Sysadmin Round/Scripting Round'),
 			'This will be an onsite round during Tathva',
 			'Involving practical linux hassles/problems on Debian/Redhat based systems',
+			'And writing bash scripts for general shell usage, administration related tasks, networking, etc.',
 			'One system per team',
 			'Duration will be 90 minutes',
 			'Marks will be given for documentation too',
 			'Boot CD/USB will be available on request',
 			'No Internet access',
-			$('<h4>').text('Round 3 - Scripting Round'),
-			'This will also be an onsite round during Tathva',
-			'Involving writing bash scripts for general shell usage, administration related tasks, networking, etc.',
-			'One system per team',
-			'Duration 3 hours',
-			'Marks for elegance, covering more input cases, optimization',
-			$('<p>').html('Final winners will be decided on the basis of performance in last two rounds.')
+			$('<p>').html('Final winners will be decided on the basis of performance in last rounds.')
 		], function (num, line) {
 			terminal.print(line);
 		});
@@ -369,13 +365,13 @@ var Filesystem = {
 			$('<h3>').text('Contact Info'),
 			'Roshan Piyush',
 			' Phone: +91 944 788 4634',
-			' E-mail: piyushroshan@gmail.com',
+			' E-mail: tuxofwar@tathva.org',
 			'Sudev A C',
 			' Phone: +91 808 944 2513',
-			' Email: sudevdev@gmail.com',
+			' Email: tuxofwar@tathva.org',
 			'Aayush Jaiswal',
 			' Phone: +91 808 944 2513',
-			' Email: sudevdev@gmail.com'
+			' Email: tuxofwar@tathva.org'
 		], function (num, line) {
 			terminal.print(line);
 		});
