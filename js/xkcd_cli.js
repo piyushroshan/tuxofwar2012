@@ -32,6 +32,7 @@ var xkcd = {
 	baseA: '/contest/answer/',
 	baseR: '/contest/start/',
 	baseE: '/contest/stop/',
+	baseF: '/contest/end/',
 	baseT: '/contest/time/',
 
 	get: function(num, success, error) {
@@ -94,7 +95,7 @@ var xkcdDisplay = TerminalShell.commands['q'] = TerminalShell.commands['question
 		
 		setTimeout(function(){
 			terminal.setWorking(false);
-		},500);
+		},1000);
 	}, fail);
 	//console.log("last now : " + xkcd.last.num);
 }
@@ -165,7 +166,7 @@ TerminalShell.commands['start'] = function(terminal, tatID) {
 		if (tatID === '' | typeof(tatID) === 'undefined' ) {
 			terminal.print($('<p>').addClass('error').text('Please enter a valid tathva team ID of the form TOW123'));
 		} else {
-			if (/^tow\d{3}$/.test(tatID))
+			if (/^tow\d{3}$/.test(tatID) | /^TOW\d{3}$/.test(tatID))
 				window.location = xkcd.baseR + tatID.toString()
 			else
 				terminal.print($('<p>').addClass('error').text('Please enter a valid tathva team ID of the form TOW123'));
@@ -248,13 +249,14 @@ var Filesystem = {
 		'use strict';
 		$.each([
 			$('<h3>').text('Welcome to Tux of War contest console'),
-			'Please clear browser cache before starting the event',
+			$('<h4>').text('Please clear browser cache before starting the event'),
 			'Use "ls", "cat", and "cd" to navigate the filesystem.Press "Ctrl" then "L" to clear.',
 			'cat reginfo.txt for registration information.',
-			'The contest opens at 9pm on Monday October 15,2012. You may login upto 9:30 pm to finish the contest in time.',
+			'The contest opens at 9pm on Monday October 15,2012. You may login upto 10:30 pm to finish the contest in time.',
 			'cat instruction.txt before participating',
 			'use start <tathva TuxOfWar team id> to start the contest. e.g. start TOW123',
-			$('<h3>').text('The contest will start soon, you will be notified here. Please be patient.')
+			$('<h4>').text('start <tathva TuxOfWar team id>'),
+			$('<h4>').text('The contest has started.'),
 		], function (num, line) {
 			terminal.print(line);
 		});
@@ -303,7 +305,7 @@ var Filesystem = {
 			'Questions will consist of MCQs and one-liners based on UNIX/Linux commands, tools, concepts and philosophy.',
 			'Duration will be 30 minutes.',
 			'This will be an elimination round and only the qualifying teams will appear for next 2 rounds.',
-			$('<h4>').text('Round 2 and Round 3- Sysadmin Round/Scripting Round'),
+			$('<h4>').text('Round 2 and Round 3 - Sysadmin Round/Scripting Round'),
 			'This will be an onsite round during Tathva',
 			'Involving practical linux hassles/problems on Debian/Redhat based systems',
 			'And writing bash scripts for general shell usage, administration related tasks, networking, etc.',
@@ -341,16 +343,16 @@ var Filesystem = {
 			$('<h3>').text('How to compete:'),
 			'Do not reload or logout once you start the competition',
 			'Use the following command to use the contest console:',
-			'start <tathva team id>',
+			$('<h4>').text('start <tathva team id>'),
 			'e.g. start TOW100',
 			$('<br />'),
 			'Once the contest starts to view any question type the command:',
-			'display <ques_no> OR question <ques_no> ',
+			$('<h4>').text('display <ques_no> OR question <ques_no> '),
 			'e.g. for question no. 5 type command question 5',
 			'question number must be between 1 and 45',
 			$('<br />'),
 			'To answer any question type :',
-			'answer -q <ques_no> -a <ans_option>',
+			$('<h4>').text('answer -q <ques_no> -a <ans_option>'),
 			'e.g. To answer question number 5 with option B type ',
 			'answer -q 5 -a B',
 			$('<br />'),
@@ -690,6 +692,14 @@ TerminalShell.commands['welcome'] = function(terminal) {
 
 TerminalShell.commands['end'] = function(terminal) {
 	terminal.print($('<h3>').text('Thanks for participating in the contest'));
+	terminal.print($('<p>').text('You have finished your 30 mins.'));
+	terminal.print($('<p>').text('You may still answer to the questions using same procedure.'));
+	terminal.print($('<p>').text('Preference will be given to those who have answered first'));
+};
+
+TerminalShell.commands['ends'] = function(terminal) {
+	terminal.print($('<h3>').text('Thanks for participating in the contest'));
+	terminal.print($('<p>').text('You have been logged out'));
 };
 
 TerminalShell.fallback = function(terminal, cmd) {
@@ -775,20 +785,22 @@ $(document).ready(function() {
 		/* Example implementation : var cid = getUrlVars()['id']; */
 		if(getUrlVars()['auth']) {
 			Terminal.runCommand('welcome');
-			var dur = 0;
+			var dur = 60*30;
 			$.getJSON("/contest/time/", function(data) {
    					dur = Number(data.time);
    			});
 			kill = setInterval(function(){
 				if (dur === 0) {
 					clearTimeout(kill);
-					window.location = xkcd.baseE;
+					window.location = xkcd.baseF;
 				}
 				$("#timer").text(Math.floor((dur/60)) + " minutes " + Math.floor((dur%60)) +" seconds left");
 				dur -= 1;
 			},1000);
 		} else if(getUrlVars()['end']) {
-			Terminal.runCommand('end');
+			Terminal.runCommand('end'); 
+		} else if(getUrlVars()['ends']) {
+			Terminal.runCommand('ends');
 		} else {
 		Terminal.runCommand('cat welcome.txt');
 		} 

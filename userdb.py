@@ -9,7 +9,7 @@ from google.appengine.api import users
 from questiondb import questionm
 def generateSet():
 	a = []
-	for i in range(2):
+	for i in range(45):
 		a.append(i+1)
 	random.shuffle(a)
 	return a
@@ -49,7 +49,7 @@ def userPlayStop():
 			u.endTime = datetime.datetime.now()
 			u.put()
 		return u.user.nickname() + u.tathvaID + str(u.endTime)
-	return "guest"+"tow1234"
+	return "guest"+"tow123"
 
 def userRemainingTime():
 	query = userPlay.all()

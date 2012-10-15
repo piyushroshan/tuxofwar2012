@@ -34,6 +34,11 @@ class contestStart(webapp.RequestHandler):
 class contestStop(webapp.RequestHandler):
 	def get(self):
 		self.response.out.write(userdb.userPlayStop())
+		self.redirect('/?ends=1')
+
+class contestStops(webapp.RequestHandler):
+	def get(self):
+		self.response.out.write(userdb.userPlayStop())
 		self.redirect('/?end=1')
 		
 
@@ -153,6 +158,7 @@ application = webapp.WSGIApplication(
 									[('/', index),
 									('/contest/start/(.*)|/',contestStart),
 									('/contest/stop/',contestStop),
+									('/contest/end/',contestStops),
 									('/contest/question/(\d*)|/', contestQuestion),
 									('/contest/answer/', contestAnswer),
 									('/contest/time/', remainingTime),
